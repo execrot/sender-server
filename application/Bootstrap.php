@@ -38,17 +38,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         ]);
 
         $appResources->addResourceTypes([
-            'exceptions' => [
-                'namespace' => 'Exception',
-                'path' => 'exceptions'
-            ],
             'models' => [
                 'namespace' => 'Model',
                 'path' => 'models'
-            ],
-            'services' => [
-                'namespace' => 'Service',
-                'path' => 'services'
             ],
         ]);
     }
