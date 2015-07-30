@@ -19,12 +19,14 @@ class App_Model_Queue extends Mongostar_Model
     const SMS = 'sms';
 
     /**
+     * @param int $type
      * @return App_Model_Queue|null
      */
-    public static function pop()
+    public static function pop($type)
     {
         $message = self::fetchOne([
-            'time' => ['$lt' => time()]
+            'time' => ['$lt' => time()],
+            'type' => $type
         ]);
 
         if ($message) {

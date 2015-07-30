@@ -4,8 +4,6 @@ class MailController extends Default_Controller_Command
 {
     public function indexAction()
     {
-        $mail = new Zend_Mail('UTF-8');
-
         do {
 
             $message = App_Model_Queue::pop(App_Model_Queue::EMAIL);
@@ -29,12 +27,14 @@ class MailController extends Default_Controller_Command
                     ]
                 ));
 
+                $mail = new Zend_Mail('UTF-8');
+
                 foreach ($message->receivers as $receiver) {
                     $mail->addTo($receiver['email'], $receiver['name']);
                 }
 
                 $this->writeLine("------------------------------------------------");
-                $this->writeLine("to: " . implode(', ', array_values($message->receivers)));
+                $this->writeLine("to: " . print_r($message->receivers));
                 $this->writeLine("from: " . implode(', ', [$user->data['mail']['username'], $user->data['mail']['name']]));
                 $this->writeLine("Subject: " . $message->subject);
 

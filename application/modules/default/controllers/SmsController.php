@@ -34,7 +34,7 @@ class SmsController extends Default_Controller_Command
                 try {
                     $sms->send();
                 } catch (Exception $e) {
-                    printf($e->getMessage()."\n");
+                    $this->writeLine($e->getMessage());
                 }
 
                 sleep(1);

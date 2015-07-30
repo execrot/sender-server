@@ -1,5 +1,5 @@
 {
-  "name": "sender-server",
+  "name": "sender/server",
   "repositories": [
     {"type": "git", "url": "https://github.com/execrot/smsc-client.git"}
   ],
