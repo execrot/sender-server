@@ -24,6 +24,7 @@ class SmsController extends Default_Controller_Command
                 $sms = new \Smsc\Smsc();
 
                 $this->writeLine("------------------------------------------------");
+                $this->writeLine("------------------------------------------------");
                 $this->writeLine("sending message: " . $message->content);
                 $this->writeLine("to: " . implode(', ', array_values($message->receivers)));
                 $this->writeLine("from: " . $user->data['sms']['sender']);
@@ -31,11 +32,13 @@ class SmsController extends Default_Controller_Command
                 $sms->setReceivers($message->receivers);
                 $sms->setMessage($message->content);
 
+                $this->writeLine("Start sending...");
                 try {
                     $sms->send();
                 } catch (Exception $e) {
                     $this->writeLine($e->getMessage());
                 }
+                $this->writeLine('>>>> Done');
 
                 sleep(1);
             }

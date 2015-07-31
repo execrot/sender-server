@@ -34,7 +34,7 @@ class MailController extends Default_Controller_Command
                 }
 
                 $this->writeLine("------------------------------------------------");
-                $this->writeLine("to: " . print_r($message->receivers));
+                $this->writeLine("to: " . print_r($message->receivers, true));
                 $this->writeLine("from: " . implode(', ', [$user->data['mail']['username'], $user->data['mail']['name']]));
                 $this->writeLine("Subject: " . $message->subject);
 
@@ -45,11 +45,14 @@ class MailController extends Default_Controller_Command
                     $user->data['mail']['name']
                 );
 
+                $this->writeLine("Start sending...");
                 try {
                     $mail->send();
                 } catch (Exception $e) {
                     $this->writeLine($e->getMessage());
                 }
+
+                $this->writeLine('>>>> Done');
 
                 sleep(1);
             }

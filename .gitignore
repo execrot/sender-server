@@ -1,3 +1,5 @@
 vendor
+log
 composer.lock
 application/configs/application.ini
+.idea
